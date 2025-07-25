@@ -2,21 +2,22 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const handlelogin = async() =>{
     try{
       const res =await axios.post("http://localhost:3000/login",{
-        emailId,
+        email,
         password
       })
+      console.log("Login successful", res.data);
     }catch(err){
       console.error("Login failed", err);
   }
 }
   return (
     <div className="flex justify-center my-20">
-      <div className="card bg-base-300 w-96 shadow-xl">
+      <div className="card bg-base-300 w-80 shadow-xl">
         <div className="card-body">
           <h2 className="card-title flex justify-center">Login</h2>
           <div>
@@ -39,22 +40,20 @@ const Login = () => {
               </svg>
               <input
                 type="text"
-                value={emailId}
-                onChange={(e)=>setEmailId(e.target.value)}
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 required
                 placeholder="Username"
                 pattern="[A-Za-z][A-Za-z0-9\-]*"
                 minlength="3"
                 maxlength="30"
-                title="Only letters, numbers or dash"
+                title="Only letters"
               />
             </label>
             <p className="validator-hint">
-              Must be 3 to 30 characters
-              <br />
-              containing only letters, numbers or dash
+              containing only letters
             </p>
-            <label className="input validator">
+            <label className="input validator mt-4">
               <svg
                 className="h-[1em] opacity-50"
                 xmlns="http://www.w3.org/2000/svg"
