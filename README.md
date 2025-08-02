@@ -103,7 +103,9 @@ Body
 
 # Addding a custom Domain name
 
-    
+    - purchased domain name from godaddy
+    - signup on cloudflare & add a new domain name
+     
 
 
 <!--# Sending Emails via SES
