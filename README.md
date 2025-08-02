@@ -51,7 +51,7 @@ Body
     - Signup on AWS 
     - Launch instance
     - chmod 400 <secret>.pem
-    - ssh -i "devTinder-secret.pem" ubuntu@ec2-43-204-96-49.ap-south-1.compute.amazonaws.com
+    - ssh -i "dev******-******.pem" ubuntu@*******************************amazonaws.com
     - Install Node version 16.17.0
     - Git clone
     - Frontend    
@@ -101,17 +101,12 @@ Body
         }
 
 
-<!-- # Addding a custom Domain name
+# Addding a custom Domain name
 
-    - purchased domain name from godaddy
-    - signup on cloudflare & add a new domain name
-    - change the nameservers on godaddy and point it to cloudflare
-    - wait for sometime till your nameservers are updated ~15 minutes
-    - DNS record: A devtinder.in 43.204.96.49
-    - Enable SSL for website 
+    
 
 
-# Sending Emails via SES
+<!--# Sending Emails via SES
 
     - Create a IAM user
     - Give Access to AmazonSESFullAccess
