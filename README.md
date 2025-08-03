@@ -106,19 +106,19 @@ Body
     - purchased domain name from godaddy
     - signup on cloudflare & add a new domain name
     - change the nameservers on godaddy and point it to cloudflare
-    - wait for sometime till your nameservers are updated ~15 minutes
-    - DNS record: A devtinder.in 43.204.96.49
+    - wait for sometime till your nameservers are updated ~20 minutes
+    - DNS record: A devfinder.in **.***.**.**
     - Enable SSL for website 
 
 
 # Sending Emails via SES
-<!--
+
     - Create a IAM user
     - Give Access to AmazonSESFullAccess
     - Amazon SES: Create an Identity
     - Verify your domain name
     - Verify an email address identity
-    - Install AWS SDK - v3 
+<!--    - Install AWS SDK - v3 
     - Code Example https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
     - Setup SesClient
     - Access Credentials should be created in IAm under SecurityCredentials Tab
