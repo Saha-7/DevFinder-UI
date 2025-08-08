@@ -126,7 +126,7 @@ Body
     - Write code for SESClient
     - Write code for Sending email address
     - Make the email dynamic by passing more params to the run function
-<!--
+
 
 # Scheduling cron jobs in NodeJS
     - Installing node-cron
@@ -139,7 +139,7 @@ Body
     - Amazon SES Bulk Emails
     - Make sendEmail function dynamic
     - bee-queue & bull npm packages
-
+<!--
 
 # Razorpay Payment Gateway Inegration
     - Sign up on Razorpay & complete KYC 
