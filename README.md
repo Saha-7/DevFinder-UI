@@ -118,7 +118,7 @@ Body
     - Amazon SES: Create an Identity
     - Verify your domain name
     - Verify an email address identity
-<!--    - Install AWS SDK - v3 
+    - Install AWS SDK - v3 
     - Code Example https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
     - Setup SesClient
     - Access Credentials should be created in IAm under SecurityCredentials Tab
@@ -126,7 +126,7 @@ Body
     - Write code for SESClient
     - Write code for Sending email address
     - Make the email dynamic by passing more params to the run function
-
+<!--
 
 # Scheduling cron jobs in NodeJS
     - Installing node-cron
