@@ -118,7 +118,7 @@ Body
     - Amazon SES: Create an Identity
     - Verify your domain name
     - Verify an email address identity
-<!--    - Install AWS SDK - v3 
+    - Install AWS SDK - v3 
     - Code Example https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
     - Setup SesClient
     - Access Credentials should be created in IAm under SecurityCredentials Tab
@@ -139,7 +139,7 @@ Body
     - Amazon SES Bulk Emails
     - Make sendEmail function dynamic
     - bee-queue & bull npm packages
-
+<!--
 
 # Razorpay Payment Gateway Inegration
     - Sign up on Razorpay & complete KYC 
