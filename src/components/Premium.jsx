@@ -1,9 +1,9 @@
 
 const Premium = () => {
   return (
-    <div className="m-10 ">
+    <div className="m-10 flex justify-center items-center h-96">
       <div className="flex space-x-7 w-2/3 flex-col lg:flex-row">
-        <div className="card bg-base-300 rounded-box grid h-56 grow place-items-center">
+        <div className="card bg-base-300 rounded-box grid h-56 grow place-items-center cursor-pointer">
           <h1 className="font-extrabold text-2xl text-amber-100">Platinum</h1>
           <ul>
             <li> - Unlimited chat per day</li>
@@ -13,7 +13,7 @@ const Premium = () => {
           </ul>
           <button className="bg-slate-400 text-black m-2 p-2 px-4 rounded-lg">Buy</button>
         </div>
-        <div className="card bg-base-300 rounded-box grid h-56 grow place-items-center">
+        <div className="card bg-base-300 rounded-box grid h-56 grow place-items-center cursor-pointer">
           <h1 className="font-extrabold text-2xl text-amber-500">Gold</h1>
           <ul>
             <li> - Unlimited chat per day</li>
