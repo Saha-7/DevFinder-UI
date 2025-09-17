@@ -22,10 +22,10 @@ const Premium = () => {
         prefill: {
           name: notes.firstname + " " + notes.lastname,
           email: notes.email,
-          contact: '9999999999'
+          contact: '8372833221'
         },
         theme: {
-          color: '#F37254'
+          color: '#004080'
         },
       };
 
