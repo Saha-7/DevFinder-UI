@@ -1,8 +1,15 @@
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
 
 const Premium = () => {
 
   const handleBuyClick = async(type)=>{
+    const order = await axios.post(BASE_URL+"/payment/create", {
+      membershipType: type
+    },{withCredentials: true})
 
+    const data = order.json()
+    console.log(data)
   }
 
 
@@ -17,7 +24,7 @@ const Premium = () => {
             <li> - Blue tick</li>
             <li> - 3 months validity</li>
           </ul>
-          <button className="bg-amber-50 text-black m-2 p-2 px-4 rounded-lg cursor-pointer">Buy</button>
+          <button onClick={()=>handleBuyClick("platinum")} className="bg-amber-50 text-black m-2 p-2 px-4 rounded-lg cursor-pointer">Buy</button>
         </div>
         <div className="card bg-base-300 rounded-box grid h-72 w-1/2 grow place-items-center transition-transform duration-300 hover:-translate-y-2">
           <h1 className="font-extrabold text-2xl text-amber-500">Gold</h1>
