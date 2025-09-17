@@ -8,11 +8,31 @@ const Premium = () => {
       membershipType: type
     },{withCredentials: true})
 
-    const data = order.json()
-    console.log(data)
+    const {keyId, amount, currency, notes, orderId} = order.data
+  
+  //Open Razorpay Dialog Box
+
+  const options = {
+        key: keyId, // Replace with your Razorpay key_id
+        amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency,
+        name: 'DevFinder',
+        description: 'Connect to other Developers',
+        order_id: orderId, // This is the order_id created in the backend
+        prefill: {
+          name: notes.firstname + " " + notes.lastname,
+          email: notes.email,
+          contact: '9999999999'
+        },
+        theme: {
+          color: '#F37254'
+        },
+      };
+
+  const rzp = new window.Razorpay(options);
+      rzp.open();
+
   }
-
-
   return (
     <div className="m-10 flex justify-center items-center h-96">
       <div className="flex space-x-7 w-2/3 flex-col lg:flex-row">
@@ -41,4 +61,4 @@ const Premium = () => {
   );
 };
 
-export default Premium;
+export default Premium
