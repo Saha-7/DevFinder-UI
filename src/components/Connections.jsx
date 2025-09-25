@@ -58,7 +58,7 @@ const Connections = () => {
             </div>
 
             {/* Right Side: Button */}
-            <Link to={"/chat/" + _id}>
+            <Link to={"/chat/" + _id} state={{ user: { firstName, lastName, photoUrl}}}>
               <button className="btn btn-primary">Chat</button>
             </Link>
           </div>
