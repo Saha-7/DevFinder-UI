@@ -18,7 +18,16 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
-      <h1 className="p-5 border-b border-gray-100">Chat</h1>
+      <div className="w-full flex items-center gap-4 border-b border-gray-100 p-5">
+    <div className="w-10 rounded-full">
+      <img 
+        alt="Tailwind CSS chat bubble component"
+        src={ChatUser?.photoUrl}
+      />
+    </div>
+    <h1 className="p-5 border-b border-gray-100"><span>{ChatUser?.firstname}{ChatUser?.lastName}</span></h1>
+  </div>
+      
 
       <div className="flex-1 overflow-scroll p-5">
         {/* Display Message */}
