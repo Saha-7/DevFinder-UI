@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 const Chat = () => {
-
-  const location = useLocation()
+  const location = useLocation();
 
   const { targetUserId } = useParams();
   console.log(targetUserId);
 
   // Receving end user
-  const ChatUser = location.state?.user
+  const ChatUser = location.state?.user;
   console.log(ChatUser);
   const [messages, setMessages] = useState([
     { text: "Hello World" },
@@ -18,16 +17,26 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
-      <div className="w-full flex items-center gap-4 border-b border-gray-100 p-5">
-    <div className="w-10 rounded-full">
-      <img 
-        alt="Tailwind CSS chat bubble component"
-        src={ChatUser?.photoUrl}
-      />
-    </div>
-    <h1 className="p-5 border-b border-gray-100"><span>{ChatUser?.firstname}{ChatUser?.lastName}</span></h1>
+      <div className="w-full flex items-center gap-3 border-b border-gray-200 px-4 py-2">
+  {/* Profile Picture */}
+  <div className="w-10 h-10 rounded-full overflow-hidden">
+    <img
+      alt="profile pic"
+      src={ChatUser?.photoUrl}
+      className="w-full h-full object-cover"
+    />
   </div>
-      
+
+  {/* User Name */}
+  <div className="flex flex-col">
+    <span className="font-medium text-white">
+      {ChatUser?.firstName} {ChatUser?.lastName}
+    </span>
+    {/* optional: last seen like WhatsApp */}
+    {/* <span className="text-xs text-gray-500">online</span> */}
+  </div>
+</div>
+
 
       <div className="flex-1 overflow-scroll p-5">
         {/* Display Message */}
