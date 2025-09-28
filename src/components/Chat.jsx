@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { createSocketConnection } from "../utils/socket";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
   const location = useLocation();
@@ -10,10 +12,21 @@ const Chat = () => {
   // Receving end user
   const ChatUser = location.state?.user;
   console.log(ChatUser);
-  const [messages, setMessages] = useState([
-    { text: "Hello World" },
-    { text: "Hello World 2" },
-  ]);
+  const [messages, setMessages] = useState([{ text: "Hello World" }]);
+  const user = useSelector((state)=> state.user)
+  const userId = user._id
+
+  useEffect(()=>{
+    const socket = createSocketConnection()
+
+    //As soon as page loaded, the socket connection is made & Emiting event to server
+    socket.emit("joinChat", {targetUserId})
+
+    //As soon as component unloads, disconnect the socket connection
+    return ()=>{
+      socket.disconnect()
+    }
+  })
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
