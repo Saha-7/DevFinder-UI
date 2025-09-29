@@ -12,7 +12,7 @@ const Chat = () => {
   // Receving end user
   const ChatUser = location.state?.user;
   //console.log(ChatUser);
-  const [messages, setMessages] = useState([{ text: "Hello World" }]);
+  const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const user = useSelector((state) => state.user);
   const userId = user._id;
@@ -31,9 +31,10 @@ const Chat = () => {
       targetUserId,
     });
 
-    socket.on("messageReceived", ({firstName, text})=>{
-      console.log(firstName + ": " + text)
-    })
+    socket.on("messageReceived", ({ firstName, text }) => {
+      console.log(firstName + ": " + text);
+      setMessages([...messages, { firstName, text }]);
+    });
 
     //As soon as component unloads, disconnect the socket connection
     return () => {
@@ -41,15 +42,15 @@ const Chat = () => {
     };
   }, [userId, targetUserId]);
 
-  const sendMessage =()=>{
-    const socket = createSocketConnection()
+  const sendMessage = () => {
+    const socket = createSocketConnection();
     socket.emit("sendMessage", {
       firstName: user.firstName,
       userId,
       targetUserId,
-      text: newMessage
-    })
-  }
+      text: newMessage,
+    });
+  };
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
@@ -79,31 +80,20 @@ const Chat = () => {
           return (
             <>
               <div key={index} className="chat chat-start">
-                <div className="chat-bubble">
-                  It's over Anakin,
-                  <br />I have the high ground.
-                  <span className="align-sub text-[10px] opacity-50 ml-2">
-                    12:46
-                    <img
-                      alt="double tick"
-                      className="inline-block ml-1 w-3 h-3 align-sub invert hue-rotate-180"
-                      src="https://img.icons8.com/ios-glyphs/30/double-tick--v1.png"
-                    />
-                  </span>
+                <div className="chat-header">
+                  {msg.firstName}
+                  <time className="text-xs opacity-50">2 hours ago</time>
                 </div>
+                <div className="chat-bubble">{msg.text}</div>
+                <div className="chat-footer opacity-50">Seen</div>
               </div>
-              <div className="chat chat-end">
-                <div className="chat-bubble">
-                  You underestimate my power!
-                  <span className="align-sub text-[10px] opacity-50 ml-2">
-                    12:46
-                    <img
-                      alt="double tick"
-                      className="inline-block ml-1 w-3 h-3 align-sub invert hue-rotate-180"
-                      src="https://img.icons8.com/ios-glyphs/30/double-tick--v1.png"
-                    />
-                  </span>
+              <div className="chat chat-start">
+                <div className="chat-header">
+                  {msg.firstName}
+                  <time className="text-xs opacity-50">2 hour ago</time>
                 </div>
+                <div className="chat-bubble">I loved you.</div>
+                <div className="chat-footer opacity-50">Delivered</div>
               </div>
             </>
           );
@@ -111,11 +101,15 @@ const Chat = () => {
       </div>
 
       <div className="p-5 border-t border-gray-100 flex items-center gap-2">
-        <input value={newMessage} onChange={(e)=> setNewMessage(e.target.value)}
+        <input
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type here..."
           className="bg-black text-white flex-1 border-gray-100 p-2 rounded-lg"
         />
-        <button onClick={sendMessage} className="btn-secondary btn">Send</button>
+        <button onClick={sendMessage} className="btn-secondary btn">
+          Send
+        </button>
       </div>
     </div>
   );

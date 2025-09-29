@@ -18,7 +18,7 @@ const Navbar = () => {
       console.log("Error Log out", err)
     }
   }
-  console.log(user);
+ // console.log(user);
   return (
     <div className="navbar bg-base-300">
       <div className="flex-1">
