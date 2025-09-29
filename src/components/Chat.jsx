@@ -7,11 +7,11 @@ const Chat = () => {
   const location = useLocation();
 
   const { targetUserId } = useParams();
-  console.log(targetUserId);
+  //console.log(targetUserId);
 
   // Receving end user
   const ChatUser = location.state?.user;
-  console.log(ChatUser);
+  //console.log(ChatUser);
   const [messages, setMessages] = useState([{ text: "Hello World" }]);
   const [newMessage, setNewMessage] = useState("");
   const user = useSelector((state) => state.user);
@@ -40,7 +40,7 @@ const Chat = () => {
   const sendMessage =()=>{
     const socket = createSocketConnection()
     socket.emit("sendMessage", {
-      firstname: user.firstName,
+      firstName: user.firstName,
       userId,
       targetUserId,
       text: newMessage
