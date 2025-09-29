@@ -13,48 +13,50 @@ const Chat = () => {
   const ChatUser = location.state?.user;
   console.log(ChatUser);
   const [messages, setMessages] = useState([{ text: "Hello World" }]);
-  const user = useSelector((state)=> state.user)
-  const userId = user._id
+  const user = useSelector((state) => state.user);
+  const userId = user._id;
 
-  useEffect(()=>{
-
-    if(!userId){
-      return
+  useEffect(() => {
+    if (!userId) {
+      return;
     }
 
-    const socket = createSocketConnection()
+    const socket = createSocketConnection();
 
     //As soon as page loaded, the socket connection is made & Emiting event to server
-    socket.emit("joinChat", {userId, targetUserId})
+    socket.emit("joinChat", {
+      firstName: user.firstName,
+      userId,
+      targetUserId,
+    });
 
     //As soon as component unloads, disconnect the socket connection
-    return ()=>{
-      socket.disconnect()
-    }
-  }, [userId, targetUserId])
+    return () => {
+      socket.disconnect();
+    };
+  }, [userId, targetUserId]);
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
       <div className="w-full flex items-center gap-3 border-b border-gray-200 px-4 py-2">
-  {/* Profile Picture */}
-  <div className="w-10 h-10 rounded-full overflow-hidden">
-    <img
-      alt="profile pic"
-      src={ChatUser?.photoUrl}
-      className="w-full h-full object-cover"
-    />
-  </div>
+        {/* Profile Picture */}
+        <div className="w-10 h-10 rounded-full overflow-hidden">
+          <img
+            alt="profile pic"
+            src={ChatUser?.photoUrl}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-  {/* User Name */}
-  <div className="flex flex-col">
-    <span className="font-medium text-white">
-      {ChatUser?.firstName} {ChatUser?.lastName}
-    </span>
-    {/* optional: last seen like WhatsApp */}
-    {/* <span className="text-xs text-gray-500">online</span> */}
-  </div>
-</div>
-
+        {/* User Name */}
+        <div className="flex flex-col">
+          <span className="font-medium text-white">
+            {ChatUser?.firstName} {ChatUser?.lastName}
+          </span>
+          {/* optional: last seen like WhatsApp */}
+          {/* <span className="text-xs text-gray-500">online</span> */}
+        </div>
+      </div>
 
       <div className="flex-1 overflow-scroll p-5">
         {/* Display Message */}
