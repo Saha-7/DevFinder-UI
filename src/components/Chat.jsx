@@ -31,6 +31,10 @@ const Chat = () => {
       targetUserId,
     });
 
+    socket.on("messageReceived", ({firstName, text})=>{
+      console.log(firstName + ": " + text)
+    })
+
     //As soon as component unloads, disconnect the socket connection
     return () => {
       socket.disconnect();
