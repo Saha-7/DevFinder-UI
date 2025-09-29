@@ -13,6 +13,7 @@ const Chat = () => {
   const ChatUser = location.state?.user;
   console.log(ChatUser);
   const [messages, setMessages] = useState([{ text: "Hello World" }]);
+  const [newMessage, setNewMessage] = useState("");
   const user = useSelector((state) => state.user);
   const userId = user._id;
 
@@ -35,6 +36,16 @@ const Chat = () => {
       socket.disconnect();
     };
   }, [userId, targetUserId]);
+
+  const sendMessage =()=>{
+    const socket = createSocketConnection()
+    socket.emit("sendMessage", {
+      firstname: user.firstName,
+      userId,
+      targetUserId,
+      text: newMessage
+    })
+  }
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
@@ -96,11 +107,11 @@ const Chat = () => {
       </div>
 
       <div className="p-5 border-t border-gray-100 flex items-center gap-2">
-        <input
+        <input value={newMessage} onChange={(e)=> setNewMessage(e.target.value)}
           placeholder="Type here..."
           className="bg-black text-white flex-1 border-gray-100 p-2 rounded-lg"
         />
-        <button className="btn-secondary btn">Send</button>
+        <button onClick={sendMessage} className="btn-secondary btn">Send</button>
       </div>
     </div>
   );
