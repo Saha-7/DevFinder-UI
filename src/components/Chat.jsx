@@ -17,16 +17,21 @@ const Chat = () => {
   const userId = user._id
 
   useEffect(()=>{
+
+    if(!userId){
+      return
+    }
+
     const socket = createSocketConnection()
 
     //As soon as page loaded, the socket connection is made & Emiting event to server
-    socket.emit("joinChat", {targetUserId})
+    socket.emit("joinChat", {userId, targetUserId})
 
     //As soon as component unloads, disconnect the socket connection
     return ()=>{
       socket.disconnect()
     }
-  })
+  }, [userId, targetUserId])
 
   return (
     <div className="flex flex-col w-1/2 mx-auto border border-gray-100 rounded-lg m-5 h-[75vh]">
