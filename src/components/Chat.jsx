@@ -33,7 +33,7 @@ const Chat = () => {
 
     socket.on("messageReceived", ({ firstName, text }) => {
       console.log(firstName + ": " + text);
-      setMessages([...messages, { firstName, text }]);
+      setMessages((messages)=>[...messages, { firstName, text }]);
     });
 
     //As soon as component unloads, disconnect the socket connection
@@ -50,6 +50,7 @@ const Chat = () => {
       targetUserId,
       text: newMessage,
     });
+    setNewMessage("")
   };
 
   return (
@@ -86,14 +87,6 @@ const Chat = () => {
                 </div>
                 <div className="chat-bubble">{msg.text}</div>
                 <div className="chat-footer opacity-50">Seen</div>
-              </div>
-              <div className="chat chat-start">
-                <div className="chat-header">
-                  {msg.firstName}
-                  <time className="text-xs opacity-50">2 hour ago</time>
-                </div>
-                <div className="chat-bubble">I loved you.</div>
-                <div className="chat-footer opacity-50">Delivered</div>
               </div>
             </>
           );
