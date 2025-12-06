@@ -1,20 +1,25 @@
 # DevFinder UI
 
+### Demo
+https://github.com/user-attachments/assets/fdd5e4cc-77cd-4d35-b1b6-af73e4d27f5d
+
+
+
 ## Steps to follow 👎
 
 - Created a Vite + React application
-- Removed unecessary code and create a Hello World app
+- Removed unnecessary code and created a Hello World app
 - Install Tailwind CSS
 - Install Daisy UI
 - Add NavBar component to App.jsx
 - Create a NavBar.jsx separate Component file
-- Install react router dom
+- Install React Router Dom
 - Create BrowserRouter > Routes > Route=/ Body > RouteChildren
 - Create an Outlet in your Body Component
 - Create a footer
 - Create a Login Page
 - Install axios
-- CORS - install cors in backend => add middleware to with configurations: orgin, credentials: true
+- CORS - install CORS in backend => add middleware to with configurations: orgin, credentials: true
 - Whenever you're making API call so pass axios => { withCredentials: true }
 - install react-redux + @reduxjs/toolkit - https://redux-toolkit.js.org/tutorials/quick-start
 - configureStore => Provider => createSlice => add reducer to store
