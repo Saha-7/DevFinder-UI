@@ -5,6 +5,24 @@ https://github.com/user-attachments/assets/fdd5e4cc-77cd-4d35-b1b6-af73e4d27f5d
 
 
 
+
+
+## 🛠 Tech Stack
+- Frontend: React, Redux Toolkit, Tailwind CSS, DaisyUI, React Router
+- Backend: Node.js, Express.js, MongoDB, JWT Auth
+- Cloud & Infra: AWS EC2, Nginx, Cloudflare (SSL + Domain)
+- Email Service: Amazon SES (Automated notifications)
+- DevOps: PM2 for process management, scheduled cron jobs
+ 
+## 🚧 In Progress
+- 💬 Real-time chat using Socket.io
+- 💳 Premium subscription with Razorpay integration
+
+
+
+
+
+
 ## Steps to follow 👎
 
 - Created a Vite + React application
@@ -178,3 +196,14 @@ Body
     - Homework: Limit messages when fetching from DB
     - Project Ideas: Tic tac toe game
     - Project Idea 2 : Chess -->
+
+
+
+
+
+#### Thank you
+
+
+![DevFinder Demo](https://github.com/user-attachments/assets/700af4b8-fac3-427f-b475-780a7f13d737)
+
+
