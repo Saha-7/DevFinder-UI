@@ -14,8 +14,15 @@ const Body = () => {
   const fetchUser = async()=>{
     if (userData) return
     try {
+
+      // Get Token
+      const token = localStorage.getItem('token')
+
       const res = await axios.get(BASE_URL + "/profile/view", {
-        withCredentials: true
+        withCredentials: true,
+        headers:{
+          'Authorization': `Bearer ${token}`  //Add Token
+        }
       });
       dispatch(addUser(res.data))
     }

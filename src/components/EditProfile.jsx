@@ -22,6 +22,7 @@ const EditProfile = ({ user }) => {
     //Clear Errors
     setError("");
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
         {
@@ -32,7 +33,11 @@ const EditProfile = ({ user }) => {
           gender,
           about,
         },
-        { withCredentials: true }
+        { withCredentials: true ,
+        headers:{
+          'Authorization': `Bearer ${token}`  // 🔥 ADD TOKEN
+        },
+      }
       );
       dispatch(addUser(res?.data?.data));
       setShowToast(true);
