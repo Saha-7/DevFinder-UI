@@ -11,7 +11,10 @@ const Navbar = () => {
   const navigate = useNavigate()
   const handleLogout = async() => {
     try{
-      await axios.post(BASE_URL+"/logout", {}, {withCredentials: true})
+      // get token
+      const token = localStorage.getItem('token')
+
+      await axios.post(BASE_URL+"/logout", {}, {withCredentials: true, headers:{'Authorization': `Bearer ${token}`}})
       dispatch(removeUser())
       return navigate("/login")
     }catch(err){
