@@ -10,10 +10,13 @@ const UserCard = ({ user }) => {
 
   const handleSendRequest = async (status, userId) => {
     try {
+      // get token
+      const token = localStorage.getItem('token')
+
       const res = await axios.post(
         BASE_URL + "/request/send/" + status + "/" + userId,
         {},
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(res)
       dispatch(removeUserFromFeed(userId));
