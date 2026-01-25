@@ -22,6 +22,10 @@ const Login = () => {
         { firstName, lastName, email, password },
         { withCredentials: true }
       );
+
+      // 🔥 STORE TOKEN
+    localStorage.setItem('token', res.data.token);
+
       dispatch(addUser(res.data?.data));
       console.log(res.data?.data);
       
@@ -37,7 +41,12 @@ const Login = () => {
         email,
         password
       },{withCredentials:true})
-      console.log("Login successful", res.data);
+      // console.log("Login successful", res.data);
+
+      // 🔥 STORE TOKEN
+     localStorage.setItem('token', res.data.token);
+
+
       dispatch(addUser(res.data))
       navigate("/")
     }catch(err){
