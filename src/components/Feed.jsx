@@ -15,11 +15,17 @@ const Feed = () => {
       // Get Token
       const token = localStorage.getItem("token");
 
+      // 🔴 Guard clause — VERY IMPORTANT
+      if (!token || token === "undefined") {
+        console.error("Invalid or missing token. User not authenticated.");
+        return;
+      }
+      
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
         headers: {
-        'Authorization': `Bearer ${token}` // 🔥 ADD TOKEN
-      }
+          Authorization: `Bearer ${token}`, // 🔥 ADD TOKEN
+        },
       });
       dispatch(addFeed(res?.data?.data));
       // console.log(res.data)
