@@ -106,10 +106,13 @@ const Requests = () => {
 
   const reviewRequest = async (status, _id) => {
     try {
+      // get token
+      const token = localStorage.getItem('token')
+
       const res = await axios.post(
         BASE_URL + "/request/review/" + status + "/" + _id,
         {},
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(res);
       dispatch(removeRequest(_id));
