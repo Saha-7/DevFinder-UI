@@ -6,53 +6,68 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [error, setError] = useState("")
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSignUp = async () => {
     try {
       const res = await axios.post(
         BASE_URL + "/signup",
         { firstName, lastName, email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
-      // 🔥 STORE TOKEN
-    localStorage.setItem('token', res.data.token);
+      const token = res.data?.token || res.data?.data?.token;
+
+      if (!token) {
+        throw new Error("Token not received from server");
+      }
+
+      localStorage.setItem("token", token);
 
       dispatch(addUser(res.data?.data));
-      console.log(res.data?.data);
-      
+
       return navigate("/profile");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
     }
   };
 
-  const handleLogin = async() =>{
-    try{
-      const res =await axios.post(BASE_URL + "/login",{
-        email,
-        password
-      },{withCredentials:true})
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true },
+      );
       // console.log("Login successful", res.data);
 
-      // 🔥 STORE TOKEN
-     localStorage.setItem('token', res.data.token);
+      // 🔥 FIND TOKEN SAFELY
+      const token = res.data?.token || res.data?.data?.token;
 
+      if (!token) {
+        throw new Error("Token not received from server");
+      }
 
-      dispatch(addUser(res.data))
-      navigate("/")
-    }catch(err){
-      setError(err?.response?.data || "Something went wrong")
-  }
-}
+      localStorage.setItem("token", token);
+
+      dispatch(addUser(res.data?.data || res.data));
+
+      // dispatch(addUser(res.data));
+      navigate("/");
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
+    }
+  };
   return (
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 w-96 shadow-xl">
@@ -98,7 +113,7 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
-            
+
             <label className="form-control w-full max-w-xs my-2 mt-2">
               <div className="label">
                 <span className="label-text">Password</span>
