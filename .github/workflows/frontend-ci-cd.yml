@@ -1,0 +1,35 @@
+name: Frontend CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Pull your code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Try building — if this fails, deploy won't happen
+      - name: Build
+        run: npm run build
+
+      # Vercel auto-deploys on its own when pushed to main
+      # This workflow just acts as a SAFETY GATE for the PR
